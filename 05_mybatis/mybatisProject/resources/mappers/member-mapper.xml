@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- mapper의 namepace를 반드시 지정(고유한 별칭) -->
+<mapper namespace="memberMapper">
+
+	<!-- 
+		* resultMap은 마이바티스의 핵심적 기능
+		- ResultSet으로부터 조회된 값을 내가 지정한 자바객체에 담는 JDBC를 줄여주는 역할
+	
+		id : 해당 resultMap만의 고유 아이디
+		type : 조회된 값 뽑아 어떤 타입의 객체의 담을건지 기술(풀클래스명/별칭)
+	-->
+	
+	<resultMap id="memberResultSet" type="com.kh.mybatis.member.model.vo.Member" >
+		<!-- column : 어떤 컬럼에 해당하는 값 (DB의 컬럼명) | property : 해당 타입의 객체의 어떤 필드에 담을건지 (vo객체의 필드명) -->
+		
+		<!--  DB에서의 기본키 -->
+		<id column="user_no" property="userNo" />
+		
+		<!--  DB에서의 일반컬럼 -->
+		<result column="user_id" property="userId" />
+		<result column="user_pwd" property="userPwd" />
+		<result column="user_name" property="userName" />
+		<result column="email" property="email" />
+		<result column="birthday" property="birthday" />
+		<result column="gender" property="gender" />
+		<result column="phone" property="phone" />
+		<result column="address" property="address" />
+		<result column="enroll_date" property="enrollDate" />
+		<result column="modify_date" property="modifyDate" />
+		<result column="status" property="status" />
+	</resultMap>
+	
+	<!-- 
+		- 실행하려는 sql문 종류에 따라 태그 안에 실행시킬 sql문 작성
+		- DAO에서 해당하는 sql문 찾아서 실행할 수 있도록 고유한 id 부여
+		- 해당 sql문에 전달된 객체가 있다면 객체의 타입(풀클래스명을 parameterType 속성에부여)
+		- ?(홀더) 대신 sql문에 전달된 객체의 값을 꺼낼 때 #{필드명/변수명/키값}
+	 -->
+	 
+	 <!-- 
+	 	resultType/resultMap : 해당 select문 실행한 결과를 반환할 타입
+	 						   즉, 조회된 결과(ResultSet)를 자바에서의 어떤 자료형에 담아 반환할건지 기술
+	 -->
+	 
+	 <!--  
+	 	DB의 컬럼명과 담을 vo클래스의 필드명이 일치할 경우
+	 	=> resultType="vo클래스 풀클래스명" 만 기술해도 알아서 각 필드에 mapping
+	 	
+	 	DB의 컬럼명과 담을 vo클래스의 필드명이 일치하지 않을 경우
+	 	=> ResultMap을 이용해 직접 mapping
+	 	=> resultMap="해당ResultMap의 id값"
+	 -->
+	
+	<!-- 1. 회원가입(insert) -->
+	<insert id="insertMember" parameterType="com.kh.mybatis.member.model.vo.Member">
+		insert
+		  into member
+		  (
+		    user_no
+		  , user_id
+		  , user_pwd
+		  , user_name
+		  , email
+		  , birthday
+		  , gender
+		  , phone
+		  , address
+		  )
+		  values
+		  (
+		    seq_uno.nextval
+		  , #{userId}
+		  , #{userPwd}
+		  , #{userName}
+		  , #{email}
+		  , #{birthday}
+		  , #{gender}
+		  , #{phone}
+		  , #{address}
+		  )
+	</insert>
+	
+	<!-- 2. 로그인(select) -->
+	<select id="loginMember" resultMap="memberResultSet">
+		select
+			   user_no
+			 , user_id
+			 , user_pwd
+			 , user_name
+			 , email
+			 , birthday
+			 , gender
+			 , phone
+			 , address
+			 , enroll_date
+			 , modify_date
+			 , status
+		  from member
+		 where user_id = #{userId}
+		   and user_pwd = #{userPwd}
+		   and status = 'Y'
+	</select>
+	
+	
+</mapper>
