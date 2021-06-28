@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-dquiv="X-UA-Comatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개요</title>
+    <script src="resources/js/sample.js"></script> <!-- js를 연결해야 함수가 실행 됨-->
+</head>
+<body>
+
+    <!--
+        * 웹의 3요소
+        - HTML : 웹 문서의 큰 틀(뼈대)
+        - CSS : 스타일(색상, 디자인 등)
+        - JavaScript : 웹 문서상에 이벤트가 발생했을 때 실행해야되는 동작들 처리
+    -->
+
+    <h1>JavaScript 개요</h1>
+
+    <h3>1. 스크립트 언어란?</h3>
+    <p>
+        프로그램의 동작을 사용자의 요구에 맞게 수행되도록 해주는 용도<br>
+        빠르게 배우고 짧은 소스코드로 상호작용
+    </p>
+
+    <hr>
+
+    <h3>2. JavaScript</h3>
+    <p>
+        웹 브라우저에서 가장 많이, 기본적으로 사용되는 "인터프리터 방식"의 스크립트 언어<br>
+        - 인터프리터 방식 : 컴파일 과정 없이 실행(브라우저에 html문서에 로딩 될 때 코드를 한 줄씩 읽어서 바로 실행) <br>
+        
+        * 컴파일 과정이 없어서 따로 오류코드를 알려주지 않음
+    </p>
+
+    <hr>
+
+    <h3>3. 장단점</h3>
+    <h4>* 장점</h4>
+    <ul>
+        <li>이벤트가 발생했을 때 코드를 한 줄씩 읽어가면서 수행되어 수행속도가 빠름</li>
+        <li>간단한 코드 작성으로 초보자가 접하기 쉬움(단순한 구조, 단순한 원칙, 자료형 지정할 필요 없음, 접근제한 없음 등)</li>
+    </ul>
+
+    <h4>* 단점</h4>
+    <ul>
+        <li>웹에 특화된 기술 => 내부에서 제공되는 기능이 제한적</li>
+        <li>html내에 소스코드를 함께 작성하면 외부에 공개됨 => 보안에 취약</li>
+    </ul>
+
+    <hr>
+
+    <h3>4. JavaScript 사용법</h3>
+    <ol>
+        <li>inline(인라인) : 이벤트 속성으로 태그내에 간단한 소스코드를 작성서해 직접 실행</li>
+        <li>internal(내부) : html문서 내에 script태그 영역에 소스코드 작성해서 실행</li>
+        <li>external(외부) : 외부의 .js 파일로 작성후 가져다가 실행</li>
+    </ol>
+
+    <br>
+    <h4>1) inline 방식</h4>
+    <p>
+        태그내에 직접적으로 간단 소스코드를 작성해서 실행 시킴<br>
+        [표현법] < 태그명 on이벤트명="해당 요소에 해당 이벤트가 발생했을 때 실행할 코드" > <br>
+        실행할 소스코드가 적을 경우 inline 방식 사용
+    </p>
+
+    <button onclick="window.alert('버튼 클릭');">알람창 출력</button> <!--괄호안에 출력할 문구 작성-->
+    <button onclick="console.log('콘솔창 클릭')">콘솔창 출력</button> <!--디버깅할 용도로 사용해 개발자 도구탭에서만 볼 수 있다.-->
+
+    <br>
+    <h4>2) internal 방식</h4>
+    <p>
+        script 영역에 함수단위로 소스코드를 작성 <br>
+        하나의 요소에 하나의 이벤트 발생 시 그 함수를 호출함으로 실행시키는 방식<br>
+        > script 태그는 head태그, body태그 내에 모두 작성 가능
+    </p>
+
+    <button onclick="btnClick();">알람창 출력</button>
+    <button id="btn1">콘솔창 출력</button>
+
+    <script>
+        // 함수 선언
+        function btnClick1() {
+            window.alert('버튼 클릭');       
+        }
+
+        // 이벤트를 적용시킬 요소(id="btn1")가져와서 변수에 담기
+        var btn = document.getElementById("btn1");
+        // 선택한 요소에 이벤트 적용
+        btn.onclick = function(){
+            // 자바스크립트에는 함수를 대입시킬 수 있음. 익명함수
+            console.log("콘솔");
+        }
+    </script>
+
+    <br>
+    <h4>4) external 방식</h4>
+    <p>
+        별도의 .js 파일에 소스코드를 작성한 후 현재 html문서에 연동시켜 실행
+    </p>
+
+    <button onclick="test()";>알림창 출력</button>
+
+</body>
+</html>

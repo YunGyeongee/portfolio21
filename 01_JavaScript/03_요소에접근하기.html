@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소에 접근하기</title>
+    <style>
+        .area{
+            border:1px solid black;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 요소에 접근하는 방법 (해당 요소 가져오기)</h1>
+    
+    <h3>1) 아이디로 접근하기</h3>
+
+    <div id="area1" class="area"></div>
+    <button onclick="accessId();">아이디로 접근</button>
+    <script>
+        function accessId(){
+            // 아이디로 요소에 접근할 때
+            // document.getElementById("아이디명")
+
+            var area1 = document.getElementById("area1"); // div 요소객체
+
+            // 선택한 요소의 속성에 접근해 값을 가져오거나 수정하는 것이 가능
+            /* 선택한요소객체.속성명 */
+            console.dir(area1);
+
+            area1.innerHTML += "아이디로 접근 성공<br>";
+
+            // 선택한 요소의 style 변경
+            area1.style.backgroundColor = "yellow"; // .을 통해서 타고 들어가기
+            area1.style.color = "red";
+
+            area1.style.width = "100px";
+            area1.style.height = "200px"; // 동적인 변경도 가능함
+
+        }
+    </script>
+
+    <br><br>
+
+    <div id="area2" class="area"></div>
+    <button onclick="accessId2();">클릭마다 색변경</button>
+    <script>
+        function accessId2(){
+            var area2 = document.getElementById("area2");
+
+            if(area2.style.backgroundColor == "red"){
+                area2.style.backgroundColor = "yellow";
+            } else{
+                area2.style.backgroundColor = "red";
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <h3>2) 태그명으로 접근하기</h3>
+
+    <ul> <!-- ul>li{목록$}*5 -->
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+
+    <button onclick="accessTagName();">태그명으로 접근</button>
+
+    <script>
+        function accessTagName() {
+            // 태그명으로 요소에 접근할 때
+            // document.getElementsByTagName("태그명") => 선택된 요소객체를 배열에 담아서 반환
+
+            var list = document.getElementsByTagName("li");
+
+            console.log(list);
+            console.log("배열의 크기(선택된 li갯수 : " + list.length);
+            console.log(list[0]);
+
+            // list 에는 style속성이 수행되지 않음 (=> 배열이기 때문에)
+
+            var changeColor = 50;
+            for(var i=0; i<list.length; i++){
+                list[i].innerHTML = "안녕하세요" + i ;
+                list[i].style.backgroundColor = "rgb(130,220, " + changeColor + ")";
+                changeColor += 50;
+
+            }
+        }
+
+    </script>
+
+
+    <br><br>
+
+    <h3>3) name속성값으로 접근하기</h3>
+
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+
+            <input type="checkbox" name="hobby" value="game" id="game">
+            <label for="game">게임</label>
+
+            <input type="checkbox" name="hobby" value="music" id="music">
+            <label for="music">음악</label>
+
+            <input type="checkbox" name="hobby" value="movie" id="movie">
+            <label for="movie">영화</label>
+
+            <input type="checkbox" name="hobby" value="sports" id="sports">
+            <label for="sports">운동</label>
+        </fieldset>
+    </form>
+    
+    <div id="area3" class="area"></div>
+
+    <button onclick="accessName();">name으로 접근</button>
+    <script>
+        function accessName(){
+            // name속성값으로 요소가져올 때
+            // document.getElementsByName("name 속성값") => 배열로 변환
+
+            var hobby = document.getElementsByName("hobby");
+
+            //console.log(hobby);
+
+            var checkedItem = "";
+            for(var i=0; i<hobby.length; i++){
+                //console.log(hobby[i].checked);
+                //console.log(hobby[i].value);
+
+                if(hobby[i].checked) {
+                    checkedItem += hobby[i].value + "선택함<br>";
+                }
+            }
+
+            //console.log(checkedItem);
+            document.getElementById("area3").innerHTML = checkedItem;
+        }
+    </script>
+
+    <br><br>
+
+    <h3>4) 클래스명으로 접근하기</h3>
+
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test1"></pre>
+
+    <button onclick="accessClass();">클래스로 접근</button>
+
+    <script>
+        function accessClass(){
+            // class로 요소 가져올 때
+            // document.getElementsByClassName("class속성값") => 배열로 변환
+
+            var arr = document.getElementsByClassName("test");
+
+            for(var i=0; i<arr.length; i++){
+                console.log(arr[i]);
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
