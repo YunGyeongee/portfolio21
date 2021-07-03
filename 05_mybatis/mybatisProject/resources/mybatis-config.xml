@@ -14,7 +14,8 @@
 
 	<!-- VO 클래스들의 풀클래스명을 일반 클래스명으로 사용하기 위해 별칭으로 등록하는 영역 -->
 	<typeAliases>
-		
+		<typeAlias type="com.kh.mybatis.member.model.vo.Member" alias="Member" />
+		<typeAlias type="com.kh.mybatis.board.model.vo.Board" alias="Board" />
 	</typeAliases>
 	
 	
@@ -45,5 +46,6 @@
     <!-- DB에 사용되는 Sql문들을 담은 mapper파일을 등록하는 영역 -->
     <mappers>
       <mapper resource="/mappers/member-mapper.xml"/>
+      <mapper resource="/mappers/board-mapper.xml" />
     </mappers>
 </configuration>

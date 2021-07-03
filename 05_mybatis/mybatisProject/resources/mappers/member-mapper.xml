@@ -14,7 +14,7 @@
 		type : 조회된 값 뽑아 어떤 타입의 객체의 담을건지 기술(풀클래스명/별칭)
 	-->
 	
-	<resultMap id="memberResultSet" type="com.kh.mybatis.member.model.vo.Member" >
+	<resultMap id="memberResultSet" type="Member" >
 		<!-- column : 어떤 컬럼에 해당하는 값 (DB의 컬럼명) | property : 해당 타입의 객체의 어떤 필드에 담을건지 (vo객체의 필드명) -->
 		
 		<!--  DB에서의 기본키 -->
@@ -56,7 +56,7 @@
 	 -->
 	
 	<!-- 1. 회원가입(insert) -->
-	<insert id="insertMember" parameterType="com.kh.mybatis.member.model.vo.Member">
+	<insert id="insertMember" parameterType="Member">
 		insert
 		  into member
 		  (
@@ -85,7 +85,7 @@
 	</insert>
 	
 	<!-- 2. 로그인(select) -->
-	<select id="loginMember" resultMap="memberResultSet">
+	<select id="loginMember" resultMap="memberResultSet" parameterType="Member">
 		select
 			   user_no
 			 , user_id
