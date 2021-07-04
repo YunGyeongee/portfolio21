@@ -35,10 +35,17 @@
                     <option value="writer">작성자</option>
                     <option value="content">내용</option>
                 </select>
-                <input type="text" name="keyword">
+                <input type="text" name="keyword" value="${ keyword }">
                 <button type="submit">검색하기</button>
             </form>
         </div>
+        <c:if test="${ !empty condition }">
+        	<script>
+        		$(function(){
+        			$("#search-area option[value=${condition}]").attr("selected", true);
+        		})
+        	</script>
+        </c:if>
         <br><br>
 
         <!-- 조회된 게시글 리스트 영역-->
@@ -68,18 +75,19 @@
 
         <!-- 페이징바 영역-->
         <div id="paging-area" align="center">
-            
-            <c:if test="${ pi.currentPage ne 1 }">
-            	<a href="list.bo?currentPage=${ pi.currentPage - 1 }">[이전]</a>
+			
+			<c:if test="${ pi.currentPage ne 1 }">
+            	<a href="list.bo?currentPage=${ pi.currentPage-1 }">[이전]</a>
 			</c:if>
 			
 			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-            	<a href="list.bo?currnetPage=${ p }">[${ p }]</a>
-			</c:forEach>
-			
-			<c:if test="${ pi.currentPage ne pi.maxPage }">
-            	<a href="list.bo?currentPage=${ pi.currentPage + 1 }">[다음]</a>
-			</c:if>
+            	<a href="list.bo?currentPage=${ p }">[${ p }]</a>
+            </c:forEach>
+            
+            <c:if test="${ pi.currentPage ne pi.maxPage }">
+            	<a href="list.bo?currentPage=${ pi.currentPage+1 }">[다음]</a>
+            </c:if>
+            
         </div>
         <br><br>
     </div>
