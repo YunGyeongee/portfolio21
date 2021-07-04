@@ -35,13 +35,14 @@ public class BoardSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String condition = request.getParameter("condition"); // title | writer | content
+		String condition = request.getParameter("condition"); // title|writer|content
 		String keyword = request.getParameter("keyword");
 		
-		HashMap<String, String> map = new HashMap();
+		HashMap<String, String> map = new HashMap<>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
 		
+		// 검색조건에 만족하는 게시글 총 갯수
 		int searchCount = new BoardServiceImpl().selectSearchListCount(map);
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
@@ -50,6 +51,7 @@ public class BoardSearchController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		
 		request.getRequestDispatcher("WEB-INF/views/board/boardListView.jsp").forward(request, response);
 	
 	}
