@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .small, .big{
+            background: lightgray;
+            border:1px solid black;
+        }
+        .small{height:200px}
+        .big{height: 400px;}
+    </style>
+</head>
+<body>
+    <h1>객체</h1>
+    
+    <h3>* 객체 선언 및 호출</h3>
+    <p>
+        객체는 중괄호{}를 사용해서 생성하고, <br>
+        중괄호 안에 이 객체에 필요한 속성들을 정의한다. <br>
+        속성 : 속성값 의 형태로 정의함 (키:벨류) <br>
+        속성값으로는 모든 자료형의 값이 들어갈 수 있다.
+    </p>
+
+    <pre>
+        var 변수명 = {
+            속성:속성값,
+            속성:속성값,
+            ...
+        };
+    </pre>
+
+    <button onclick="test1();">실행확인</button>
+    <div id="area1" class="big"></div>
+
+    <script>
+        function test1(){
+            var product = {
+                pNmae:"DryMango",
+                price:4000,
+                "kind":"pickle", // 속성명에 따옴표 붙여도 무방
+                ingredient:["mango", "suger"]
+            };
+
+            console.log(product);
+            console.log(typeof(product));
+
+            var area1 = document.getElementById("area1");
+            area1.innerHTML += "product : " + product + "<br>";
+
+
+            // 객체의 속성에 접근하는 방법
+            // 1. 대괄호를 이용하는 방법 : 객체명["속성명"] => 속성값 반환
+            area1.innerHTML += "<b>객체명['속성명']으로 접근하기</b><br>";
+            area1.innerHTML += "product['pName'] : " + product['pName'] + "<br>";
+            area1.innerHTML += "product['price'] : " + product['price'] + "<br>";
+            area1.innerHTML += "product['kind'] : " + product['kind'] + "<br>";
+            area1.innerHTML += "product['ingredient'] : " + product['ingredient'] + "<br>";
+            area1.innerHTML += "product['ingredient'][0] : " + product['ingredient'][0] + "<br>";
+            area1.innerHTML += "product['ingredient'][1] : " + product['ingredient'][1] + "<hr>";
+
+
+            // 2. .을 통한 방법 : 객체명.속성명 => 속성값 반환
+            area1.innerHTML += "<b>객체명.속성명으로 접근하기</b><br>";
+            area1.innerHTML += "product.pName : " + product.pNmae + "<br>";
+            area1.innerHTML += "product.price : " + product.price + "<br>";
+            area1.innerHTML += "product.kind : " + product.kind + "<br>";
+            area1.innerHTML += "product.ingredient : " + product.ingredient + "<br>";
+            area1.innerHTML += "product.ingredient[0] : " + product.ingredient[0] + "<br>";
+            area1.innerHTML += "product.ingredient[1] : " + product.ingredient[1] + "<br>";
+
+        }
+    </script>
+
+    <br>
+    <h3>* 객체 생성 특이케이스</h3>
+
+    <button onclick="test2();">실행확인</button>
+    <div id="area2" class="small"></div>
+
+    <script>
+        function test2(){
+            // 속성명 제시할 때 공백, 특수문자가 포함될 경우 반드시 속성명을 문자열 형태로 제시
+            var user = {
+                "user Name":"홍길동",
+                "age!!":20
+            };
+
+            console.log(user);
+
+            var area2 = document.getElementById("area2");
+
+            // .을 이용 => 객체명.속성명 => 안됨
+            //area2.innerHTML += "user Name : " + user.user Name + "<br>";
+            //area2.innerHTML += "age!! : " +user.age!! + "<br>";
+
+            // 대괄호 이용 => 객체명["속성명"]
+            area2.innerHTML += "user Name : " + user["user Name"] + "<br>";
+            area2.innerHTML += "age!! : " +user["age!!"] + "<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 객체에서의 반복문</h3>
+    <p>
+        객체가 가지고 있는 모든 속성들에 접근한다면 반복문 이용 가능<br>
+        단순 for loop문으로는 사용 불가능, for in문만 사용가능
+    </p>
+
+    <button onclick="test3();">실행확인</button>
+    <div id="area3" class="small"></div>
+
+    <script>
+        function test3(){
+            var arr = ["홍길동", 10, true];
+            // 자바 스크립트에서의 배열 == 자바에서의 ArrayList
+
+            for(var i in arr){
+                console.log(arr[i]);
+            }
+
+            var game = {
+                title:"오버워치",
+                price:35000,
+                language:"한국어지원",
+                supportOs:["window32", "window64"],
+                service:true
+            };
+            // 자바스크립트에서의 객체 == 자바에서의 HashMap
+
+            var area3 = document.getElementById("area3");
+
+            for(var key in game){
+
+                // .을 통한 방법 => 진짜 game객체에 있는 key라는 속성을 찾을 것
+                //area3.innerHTML += key + " : " + game.key + "<br>";
+
+                // 대괄호를 통한 방법
+                area3.innerHTML += key + " : " + game[key] + "<br>";
+            }
+
+        }
+    </script>
+
+
+</body>
+</html>
