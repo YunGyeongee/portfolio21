@@ -10,6 +10,16 @@
 		<result column="user_id" property="boardWriter"/>
 		<result column="count" property="count"/>
 		<result column="create_date" property="createDate"/>
+		<result column="board_content" property="boardContent"/>
+	</resultMap>
+	
+	<resultMap id="ReplyResultSet" type="Reply">
+		<id column="reply_no" property="replyNo" />
+		<result column="reply_content" property="replyContent" />
+		<result column="ref_bno" property="refBoardNo" />
+		<result column="reply_writer" property="replyWriter" />
+		<result column="create_date" property="createDate" />
+		<result column="status" property="status" />
 	</resultMap>
 	
 	<!-- 1_1. 게시글 총 갯수 조회 -->
@@ -80,6 +90,41 @@
             by create_date desc
 	</select>
 	
+	<update id="increaseCount" parameterType="_int">
+		update
+		       board
+		   set count = count + 1
+		 where board_no = #{boardNo}
+		   and status = 'Y'
+	</update>
+	
+	<select id="selectBoard" resultMap="boardResultSet">
+		select
+		       board_no
+		     , board_title
+		     , board_content
+		     , user_id
+		     , count
+		     , create_date
+		  from board b
+		  join member on (board_writer=user_no)
+		 where board_no = #{boardNo}
+		   and b.status = 'Y'
+	</select>
+	
+	<select id="selectReplyList" resultMap="ReplyResultSet">
+		select
+		       reply_no
+		     , user_id
+		     , reply_content
+		     , to_char(create_date, 'YY/MM/DD') create_date
+		  from reply r
+		  join member on (reply_writer=user_no)
+		 where ref_bno = #{boardNo}
+	       and r.status = 'Y'
+	     order
+	        by create_date desc
+	</select>
 	
 	
 	

@@ -63,7 +63,7 @@
             	<c:forEach var="b" items="${ list }">
 	                <tr>
 	                    <td>${ b.boardNo }</td>
-	                    <td><a href="">${ b.boardTitle }</a></td>
+	                    <td><a href="detail.bo?bno=${ b.boardNo }">${ b.boardTitle }</a></td>
 	                    <td>${ b.boardWriter }</td>
 	                    <td>${ b.count }</td>
 	                    <td>${ b.createDate }</td>

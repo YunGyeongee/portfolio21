@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.kh.mybatis.board.model.dao.BoardDao;
 import com.kh.mybatis.board.model.vo.Board;
+import com.kh.mybatis.board.model.vo.Reply;
 import com.kh.mybatis.common.model.vo.PageInfo;
 
 public class BoardServiceImpl implements BoardService {
@@ -54,12 +55,30 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int increaseCount(int boardNo) {
-		return 0;
+		SqlSession sqlSession = getSqlSession();
+		int result = bDao.increaseCount(sqlSession, boardNo);
+		if(result>0) {
+			sqlSession.commit();
+		}
+		sqlSession.close();
+		return result;
 	}
 
 	@Override
 	public Board selectBoard(int boardNo) {
-		return null;
+		SqlSession sqlSession = getSqlSession();
+		Board b = bDao.selectBoard(sqlSession, boardNo);
+		sqlSession.close();
+		return b;
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int boardNo) {
+		SqlSession sqlSession = getSqlSession();
+		ArrayList<Reply> list = bDao.selectReplyList(sqlSession, boardNo);
+		sqlSession.close();
+		return list;
+	
 	}
 
 	

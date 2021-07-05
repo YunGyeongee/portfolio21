@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.mybatis.board.model.vo.Board;
+import com.kh.mybatis.board.model.vo.Reply;
 import com.kh.mybatis.common.model.vo.PageInfo;
 
 public interface BoardService {
@@ -22,6 +23,9 @@ public interface BoardService {
 	// 4. 게시글 상세 조회
 	int increaseCount(int boardNo);
 	Board selectBoard(int boardNo);
+	
+	// 5. 해당 게시글에 딸린 댓글 리스트 조회용
+	ArrayList<Reply> selectReplyList(int boardNo);
 	
 
 }
