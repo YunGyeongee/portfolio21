@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .small, .big, .area{
+            border:1px solid black;
+            background: lightgray;
+        }
+        .small{height: 100px;}
+        .big{height: 300px;}
+        .area{
+            height: 300px;
+            width: 100px;
+            font-size: 50px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Window 객체</h3>
+
+    <p>
+        Window 객체는 자바 스크립트 상의 최상위 객체이며 크게 BOM과 DOM으로 나뉨<br>
+        - BOM(Browser Object Model) : location객체, screen객체, navigator객체, history객체 <br>
+        - DOM(Document Object Model) : document객체 <br>
+    </p>
+
+
+    <h3>* Window 객체</h3>
+
+    <h4>- window.open("url", "창이름", "창의특성")</h4>
+
+    <button onclick="test1();">네이버</button>
+    <script>
+        function test1(){
+            //window.open(); // 새탭
+            //window.open("열 url주소", "동일한 이름으로 열려있을 경우 새롭게 열지않고 새로고침", "새로 열릴 창의 스타일(창의 너비,높이, 툴바 등) ==> 브라우저 마다 다름")
+        
+            //window.open("http://www.naver.com");
+
+            //window.open("http://www.naver.com", "네이버");
+
+            /*
+                => px
+                width : 창의 너비
+                height : 창의 높이
+
+                => yes||no
+                location : 주소창               => IE 적용 , opera 적용
+                menubar : 메뉴바                => IE 적용
+                scrollbars : 스크롤바           => IE 적용
+                status : 상태표시줄             => IE 적용
+                toolbar : 도구모음              => IE 적용
+                resizable : 창크기 조절 가능여부
+            */
+
+            //window.open("http://www.naver.com", "네이버", "width=300, heigth=600");
+            // 공통 : 주소창 수정 안됨, toolbar 없음, 상태표시줄 없음, 메뉴바 없음
+            // 크롬 : 스크롤바 있음, resizable 가능
+            // IE : 스크롤바 없음, resizable 불가능
+
+            //window.open("http://www.naver.com", "네이버", "width=500, heigth=600, location=yes, menubar=yes, scrollbars=yes, status=yes, toolbar=yes, resizeable=no");
+            window.open("http://www.naver.com", "네이버", "width=500, heigth=600, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizeable=no");
+
+        }
+    </script>
+
+    <br>
+
+    <h4>* window 객체의 timer 관련 메소드</h4>
+    <h4>- window.setTimeout(함수 , ms)</h4>
+
+    <button onclick="test2();">실행확인</button>
+
+    <script>
+        function test2(){
+            
+            // 3초 후에 alert 뜨게끔
+            /*
+            setTimeout(function(){
+                alert("Hi");
+            }, 3000);
+            */
+
+            var newWindow = window.open(); // 새로열린 창의 window객체를 반환
+
+            newWindow.alert("3초후에 이 페이지는 폭파됩니다.");
+            setTimeout(function(){
+                newWindow.close();
+            }, 3000);
+
+            // setTimeout : 제시한 일정시간후에 해당 함수 "단 한번" 실행함
+
+        }
+    </script>
+
+    <br>
+
+    <h4>- window.setInterval(함수, ms)</h4>
+
+    <button onclick="test3();">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function test3(){
+            var area1 = document.getElementById("area1");
+
+            setInterval(function(){
+                var date = new Date();
+                var hour = date.getHours();
+                var min = date.getMinutes();
+                var sec = date.getSeconds();
+                
+                area1.innerHTML = hour + " : " + min + " : " + sec;
+            }, 1000);
+
+
+        }
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

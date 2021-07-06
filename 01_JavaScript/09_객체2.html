@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            background-color: lightgray;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h3>* 객체 배열을 사용한 다량의 데이터 관리</h3>
+
+    <button onclick="test1();">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function test1(){
+
+            var student0 = {name:"김윤경", java:100, oracle:90, html:90, css:80};
+            var student1 = {name:"서현진", java:100, oracle:100, html:100, css:100};
+            var student2 = {name:"박보영", java:100, oracle:90, html:90, css:100};
+            var student3 = {name:"이제훈", java:90, oracle:90, html:90, css:80};
+
+            var students = [student0, student1, student2, student3];
+
+            //console.log(students);
+            //console.log(students.length);
+            //console.log(students[0]);
+
+            for(var i in students){
+                students[i].javascript = 100;
+                students[i].getSum = function(){
+                    return this.java + this.oracle + this.html + this.css + this.javascript;
+                };
+                students[i].getAvg = function(){
+                    return this.getSum() / 5;
+                };
+            }
+            console.log(students);
+
+            var area1 = document.getElementById("area1");
+            for(var i in students){
+
+                with(students[i])
+                    area1.innerHTML += "이름 : " + name
+                                    + ", 총점 : " + getSum()
+                                    + ", 평균 : " + getAvg() + "<br>";
+            }
+
+
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 생성자 함수</h3>
+    <p>new 키워드를 사용해서 객체를 생성할 수 있는 함수를 의미(함수명 제시시 첫 글자를 대문자로)</p>
+
+    <button onclick="test2();">실행확인</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function test2(){
+            var student0 = new Student("김윤경", 70, 90, 80, 100, 100);
+            var student1 = new Student("서현진", 90, 100, 100, 100, 100);
+
+            //console.log(student0);
+            //console.log(student1);
+            var students = [student0, student1];
+
+            console.log(students);
+
+            var area2 = document.getElementById("area2");
+            for(var i in students){
+                area2.innerHTML += students[i];
+            }
+
+            var myPhone = new Cellphone("아이폰 pro", 1300000);
+            console.log(myPhone);
+
+            // insteanceof연산자
+            // 해당 객체가 해당 생성자 함수로 생성된 객체일 경우 true, 아니면 false 반환
+            console.log(myPhone instanceof Cellphone);
+            console.log(myPhone instanceof Student);
+
+        }
+
+        function Cellphone(pName, price){
+            this.pName = pName;
+            this.price = price;
+        }
+
+        function Student(name, java, oracle, html, css, javascript){
+            // 일반 속성 정의
+            this.name = name;
+            this.java = java;
+            this.oracle = oracle;
+            this.html = html;
+            this.css = css;
+            this.javascript = javascript;
+
+            // 메소드 속성 정의
+            this.getSum = function(){
+                return this.java + this.oracle + this.html + this.css + this.javascript;
+            }
+
+            this.getAvg = function(){
+                return this.getSum() / 5;
+            }
+
+            this.toString = function(){
+                return "이름 : " + this.name + ", 총점 : " + this.getSum() + ", 평균 : " + this.getAvg() + "<br>";
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>
