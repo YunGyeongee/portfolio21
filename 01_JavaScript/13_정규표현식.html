@@ -205,6 +205,7 @@
             console.log("/a/ig : " + str.replace(regExp, "(***)"));
             */
 
+        
             var str = "JavaScript\nJQuery\nAjax";
             console.log(str);
 
@@ -220,9 +221,73 @@
         }
     </script>
 
+    <hr>
+
+    <h3>* 정규표현식을 가지고 주민번호 확인</h3>
+    주민번호 : <input type="text" placeholder="-포함해서 입력하시오" id="pno">
+    <button onclick="test4();">확인</button>
+
+    <br><br>
+    <label id=result></label>
+
+    <script>
+        function test4(){
+
+            // 사용자가 입력한 주민번호값
+            var value = document.getElementById("pno").value;
+
+            // 1단계 : 6개의값-7개의값 (글자수 맞는지 확인)
+
+            //var regExp = /^......-.......$/;
+            
+            
+            /*
+                . : 개행문자를 제외한 모든 문자
+
+
+                < 추가적인 매타 문자>
+                \d : 숫자 => [0-9]
+                \D : 숫자를 제외한 모든 문자
+
+                \w : 영문자, 숫자, _ 
+                \W : 위를 제외한 모든 문자
+
+                \s : 공백문자
+                \S : 공백문자를 제외한 모든 문자
+
+
+                < 수량문자>
+                + : 1개 이상
+                * : 0개 이상
+                ? : 0 또는 1 (다수 불가능)
+
+                {5} : 5글자
+                {2,5} : 2글자 이상 5글자 이하
+                {2,} : 2글자 이상
+                {,5} : 5글자 이하
+
+            */
+
+            // 2단계 : 숫자값6개-[1-4]숫자값6개
+            //var regExp = /^\d{6}-[1-4]\d{6}$/;
+
+            // 3단계 : 숫자값2개[1-12][1-31]-[1-4]숫자값6개
+            var regExp =/^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])-[1-4]\d{6}$/;
 
 
 
+            if(regExp.test(value)){
+                document.getElementById("result").innerHTML = "정상입력";
+            }else{
+                document.getElementById("result").innerHTML = "잘못입력";
+            }
+
+
+        }
+    </script>
+
+    <br><br>
+    <input type="date"> - <input type="text">
 
 </body>
 </html>
