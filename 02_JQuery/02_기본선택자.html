@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>기본선택자</h1>
+    
+    <h3>* 아이디 선택자</h3>
+    <p>특정 고유한 아이디 값은 가진 요소 하나만을 선택할 때</p>
+
+    <h1 id="id1">ID1</h1>
+    <h1 id="id2">ID2</h1>
+
+    <script>
+        $(document).ready(function(){
+            $("#id2").css("color", "pink");
+            $("#id2").html("h2변경");
+        })
+    </script>
+
+
+
+</body>
+</html>
