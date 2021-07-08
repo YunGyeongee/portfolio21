@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Content 영역 관련 메소드</h1>
+
+    <h3>* html(["변경할문구"]) : innerHTML 속성과 관련된 메소드</h3>
+    <p>
+        선택된요소의 content영역(시작태그와 종료태그 사이)을 리턴 또는 변경 메소드 <br>
+        > $("선택자").html() : 선택된 요소의 innerHTML값을 반환 (이때 html태그까지 포함) <br>
+        > $("선택자").html("문구") : 선택된 요소의 innerHTML값을 해당 전달값으로 변경 <br>
+                                    (전달값에 html태그가 있을 경우 태그로 해석)
+    </p>
+
+    <h1 id="test1">
+        <a>네이버로</a>
+    </h1>
+    <h1 id="test2"></h1>
+
+    <script>
+        $(function(){
+            // var tmp = document.getElementById("test1").innerHTML;
+            var tmp = $("#test1").html();
+            console.log(tmp); // tmp == "<a>네이버로</a>"
+
+            // document.getElementById("test2").innerHTML = "<a>네이버로</a>";
+            $("#test2").html(tmp);
+            $("#test2").children().attr("href", "http://www.naver.com");
+
+        })
+    </script>
+
+    <br><br>
+
+    <div class="class1">test1</div>
+    <div class="class1">test2</div>
+    <div class="class1">test3</div>
+
+    <script>
+        $(function(){
+            $(".class1").css("background", "red");
+            
+            //$(".class1").html("<h1>눈이 아파유</h1>");
+            
+            // 선택된 요소들에 순차적으로 접근 후 다른 내용을 반영
+            // 순차적으로 접근할 때마다 해당 function 실행 후 반환값을 가지고 반영
+            // 콜백함수 : 함수 실행 후 반환된 결과값을 가지고 반영
+            var count = 0;
+            $(".class1").html(function(){
+                return "<h1>눈이 아파유 아파유" + count++ + "</h1>";
+            })
+        })
+    </script>
+   
+
+</body>
+</html>

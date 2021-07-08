@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h3>* 필터 관련 선택자</h3>
+
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>혈액형</th>
+            <th>거주지</th>
+        </tr>
+        <tr>
+            <td>가나다</td>
+            <td>A형</td>
+            <td>서울</td>
+        </tr>
+        <tr>
+            <td>마바사</td>
+            <td>B형</td>
+            <td>경기도</td>
+        </tr>
+        <tr>
+            <td>아자차</td>
+            <td>O형</td>
+            <td>부산</td>
+        </tr>
+        <tr>
+            <th colspan="2">총인원</th>
+            <td>3명</td>
+        </tr>
+    </table>
+
+    <script>
+        $(function(){
+            $("tr:first").css({backgroundColor:"black", color:"white"});
+            $("tr:last").css({backgroundColor:"red", color:"white"});
+            $("tr:even").css("backgroundColor", "lightgray"); // 짝수번째인덱스
+            $("tr:odd").css("backgroundColor", "yellow"); // 홀수번째인덱스
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 필터링과 관련된 메소드</h3>
+    <p>
+        기준이되는 요소들 중에서 특정 요소만을 걸러서 선택해주는 메소드 <br>
+        first(), last(), filter(), eq(), not()
+    </p>
+
+
+    <!-- h4{test-$}*6 -->
+    <h4 class="test">test-1</h4>
+    <h4 class="test">test-2</h4>
+    <h4 class="test">test-3</h4>
+    <h4 class="test">test-4</h4>
+    <h4>test-5</h4>
+    <h4 class="test">test-6</h4>
+
+    <script>
+        $(function(){
+            $("h4").first().css("font-size", "20px");
+            $("h4").last().css("font-size", "30px");
+
+            $("h4").filter(".test").text("text"); // test요소 선택
+            $("h4").not(".test").css("color", "Red"); // test가 아닌 요소를 선택
+
+            $("h4").eq(2).text("eq로 선택됨"); //2번 인덱스 선택
+        })
+    </script>
+
+</body>
+</html>

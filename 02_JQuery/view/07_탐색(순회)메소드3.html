@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        .wrap, .wrap * {
+            border:1px solid lightgray;
+            display:block;
+            color:gray;
+            margin:15px;
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>
+        * Sideways(형제) 메소드 : 같은 레벨(동위관계)에 있는 요소들을 선택할 수 있는 메소드
+    </h3>
+
+    <div class="wrap">
+        <p>p</p>
+        <span>span</span>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <p>p</p>
+    </div>
+
+    <p>
+        <b>- $("선택자").siblings()</b> <br>
+        선택된 요소와 같은 레벨에 있는 모든 요소들 선택 <br><br>
+
+        <b>- $("선택자").siblings("선택자")</b> <br>
+        선택된 요소와 같은 레벨에 있는 모든 요소들 중 전달값과 일치하는 요소들만 선택 <br>
+
+        <hr>
+
+        <b>- $("선택자").next()</b> <br>
+        선택된 요소의 같은 레벨 중 바로 다음요소 하나만을 선택 <br><br>
+
+        <b>- $("선택자").nextAll()</b> <br>
+        선택된 요소의 같은 레벨 중 다음 요소들 다 선택 <br><br>
+
+        <b>- $("선택자").nextUntil("선택자")</b> <br>
+        선택된 요소의 같은 레벨의 다음 요소들 중 전달값과 일치하는 요소들까지만 선택 <br>
+
+        <hr>
+
+        <b>- $("선택자").prev()</b> <br>
+        선택된 요소의 같은 레벨 중 바로 이전요소 하나만을 선택 <br><br>
+
+        <b>- $("선택자").prevAll()</b> <br>
+        선택된 요소의 같은 레벨 중 이전요소들 다 선택 <br><br>
+
+        <b>- $("선택자").prevUntil("선택자")</b> <br>
+        선택된 요소의 같은 레벨의 이전요소들 중 전달값과 일치하는 요소들까지만 선택
+
+    </p>
+
+    <script>
+        $(function(){
+            var style1 = {color:"red", border:"2px solid red"};
+            var style2 = {color:"blue", border:"2px solid blue"};
+            var style3 = {color:"yellow", border:"2px solid yellow"};
+            var style4 = {backgroundColor:"aqua", color:"red"};
+
+            $("h2").siblings().css(style1);
+            $("h2").siblings("p").css(style2);
+
+            $("h2").next().css(style3);
+            $("h2").nextAll().css(style4);
+            $("h2").nextUntil("p").css("font-size", "3em"); // p요소 이전까지 선택
+
+            $("h2").prev().css("backgroundColor", "pink");
+            $("h2").prevAll().css(style4);
+            $("h2").prevUntil("p").css("border","dotted");
+
+            //$("h2").parents("".wrap").css("color", "pink");
+            $("h2").parent().prev().css("color", "pink");
+
+
+        })
+    </script>
+    
+</body>
+</html>
