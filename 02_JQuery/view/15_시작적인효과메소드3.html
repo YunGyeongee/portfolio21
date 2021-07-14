@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h3>* fadeIn()과 fadeOut()</h3>
+
+    <button id="fadeOut">fadeOut</button>
+    <button id="fadeIn">fadeIn</button>
+    <button id="fadeToggle">fadeToggle</button>
+
+    <br><br>
+
+    <img id="city" src="../resources/image/city1.PNG" alt="">
+
+    <script>
+        $(function(){
+            $("#fadeOut").click(function(){
+                $("#city").fadeOut(2000); 
+            })
+
+            $("#fadeIn").click(function(){
+                $("#city").fadeIn(2000);
+            })
+
+            $("#fadeToggle").click(function(){
+                $("#city").fadeToggle(1000);
+            })
+        })
+    </script>
+
+
+</body>
+</html>
